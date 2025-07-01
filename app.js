@@ -17,15 +17,21 @@ const section = document.getElementById("characters-list");
 const html = characters
   .map((character) => {
     return `
-      <div class="character-card">
-        <img src="${character.image}" alt="${character.first_name} ${character.last_name}">
+  <div class="character-card">
+    <div class="card-content">
+      <div class="card-text">
         <h2>${character.first_name} ${character.last_name}</h2>
         <p><strong>House:</strong> ${character.house}</p>
         <button class="delete-btn">Delete</button>
         <button class="info-btn">Info</button>
         <p class="actor-info" style="display: none;"><strong>Actor:</strong> ${character.actor}</p>
       </div>
-    `;
+      <div class="card-image">
+        <img src="${character.image}" alt="${character.first_name} ${character.last_name}">
+      </div>
+    </div>
+  </div>
+`;
   })
   .join("");
 
@@ -36,7 +42,7 @@ const infoButtons = document.querySelectorAll(".info-btn");
 
 deleteButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
-    btn.parentElement.remove();
+    btn.closest(".character-card").remove();
   });
 });
 
